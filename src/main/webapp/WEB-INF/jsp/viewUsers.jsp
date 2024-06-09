@@ -127,6 +127,7 @@
             <h3><%= user.getUserName() %></h3>
             <p>Age: <%= user.getUserAge() %></p>
             <p>Gender: <%= user.getUserGender() %></p>
+            <button onclick="location.href='test/add'">Add Test</button>
             <button>Edit</button>
             <button>Delete</button>
         </div>

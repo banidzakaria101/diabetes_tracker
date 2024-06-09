@@ -1,6 +1,7 @@
 package com.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -15,10 +16,11 @@ public class DiabetesTest {
     private int BGLs;
 
     @Column(nullable = false)
-    private Date testDate;
+    private LocalDateTime testDate;
 
     @ManyToOne
     private User user;
+
 
     public DiabetesTest() {
     }
@@ -41,11 +43,11 @@ public class DiabetesTest {
         this.BGLs = BGLs;
     }
 
-    public Date getTestDate() {
+    public LocalDateTime getTestDate() {
         return testDate;
     }
 
-    public void setTestDate(Date testDate) {
+    public void setTestDate(LocalDateTime testDate) {
         this.testDate = testDate;
     }
 
