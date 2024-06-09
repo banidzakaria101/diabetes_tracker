@@ -4,18 +4,19 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name = "User")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "userName")
     private String userName;
 
-    @Column(nullable = false)
+    @Column(name = "userAge")
     private String userAge;
 
-    @Column(nullable = false)
+    @Column(name = "userGender")
     private String userGender;
 
     @OneToMany(mappedBy = "user")

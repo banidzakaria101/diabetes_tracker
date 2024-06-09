@@ -21,12 +21,18 @@ public class UserController {
     @GetMapping("/register")
     public String showRegisterForm(Model model) {
         model.addAttribute("user", new User());
-        return "register";
+        return "AddUser";
     }
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute User user) {
         userService.saveUser(user);
         return "redirect:/";
+    }
+
+    @GetMapping("/display")
+    public String viewUsers(Model model) {
+        model.addAttribute("users", userService.getAllUsers());
+        return "viewUsers";
     }
 }

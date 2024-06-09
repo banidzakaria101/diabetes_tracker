@@ -1,7 +1,11 @@
+<%@ page import="com.model.User" %>
+<%@ page import="java.util.List" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home Page</title>
+    <title>View Users</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
@@ -58,22 +62,27 @@
             align-items: center;
             flex-wrap: wrap;
         }
-        .box {
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .card {
             background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
             border-radius: 10px;
             padding: 20px;
-            margin: 10px;
-            width: 300px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            width: 300px;
         }
-        .box h3 {
+        .card h3 {
             margin-top: 0;
         }
-        .box p {
+        .card p {
             margin: 15px 0;
         }
-        .box button {
+        .card button {
             background-color: rgba(0, 123, 255, 0.9);
             color: white;
             border: none;
@@ -81,7 +90,7 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        .box button:hover {
+        .card button:hover {
             background-color: rgba(0, 123, 255, 1);
         }
         .footer {
@@ -106,15 +115,25 @@
     </div>
 </div>
 <div class="content container">
-    <div class="box">
-        <h3>Add User</h3>
-        <p>Click the button below to add a new user to the Diabetes Tracker.</p>
-        <button onclick="location.href='user/register'">Add User</button>
-    </div>
-    <div class="box">
-        <h3>View Users</h3>
-        <p>Click the button below to display all registered users.</p>
-        <button onclick="location.href='user/display'">View Users</button>
+    <div class="card-container">
+        <!-- JavaScript will dynamically populate user cards here -->
+        <%
+            // Get users from the request attribute
+            List<User> users = (List<User>) request.getAttribute("users");
+            if (users != null) {
+                for (User user : users) {
+        %>
+        <div class="card">
+            <h3><%= user.getUserName() %></h3>
+            <p>Age: <%= user.getUserAge() %></p>
+            <p>Gender: <%= user.getUserGender() %></p>
+            <button>Edit</button>
+            <button>Delete</button>
+        </div>
+        <%
+                }
+            }
+        %>
     </div>
 </div>
 <div class="footer">
